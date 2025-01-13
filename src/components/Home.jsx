@@ -7,15 +7,12 @@ import service3 from "../assets/service-hosting.svg";
 import service4 from "../assets/service-secure.svg";
 import service5 from "../assets/service-seo.svg";
 import service6 from "../assets/service-social.svg";
-import happyClient from '../assets/happy-clients.svg'
-import hourSupport from '../assets/hours-support.svg'
-import projectComp from '../assets/complete-projects.svg'
+import happyClient from "../assets/happy-clients.svg";
+import hourSupport from "../assets/hours-support.svg";
+import projectComp from "../assets/complete-projects.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css"; // Core Swiper styles
-import "swiper/css/autoplay"; // Optional Swiper styles (if autoplay is used)
-import "swiper/css/navigation"; // Optional Swiper styles (if navigation is used)
-import "swiper/css/pagination"; // Optional Swiper styles (if pagination is used)
-// Import Swiper modules
+import "swiper/css";
+import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 
 import client1 from "../assets/client-1.png";
@@ -26,61 +23,68 @@ import client5 from "../assets/client-5.png";
 import client6 from "../assets/client-6.png";
 import client7 from "../assets/client-7.png";
 import client8 from "../assets/client-8.png";
-
+import bg from "../assets/hero-bg.png";
 
 const ClientCarousel = () => {
-    const clients = [
-      client1,
-      client2,
-      client3,
-      client4,
-      client5,
-      client6,
-      client7,
-      client8,
-    ];
-  
-    return (
-      <div className="text-center max-h-[10em] relative z-1">
-        <div className=" mx-auto">
-          <Swiper
-            modules={[Autoplay]}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            spaceBetween={20}
-            slidesPerView={4}
-            loop={true}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              768: { slidesPerView: 3 },
-              1024: { slidesPerView: 5 },
-            }}
-          >
-            {clients.map((client, idx) => (
-              <SwiperSlide key={idx}>
-                <img
-                  src={client}
-                  className="img-fluid mx-auto grayscale h-[8em]"
-                  alt={`Client ${idx + 1}`}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+  const clients = [
+    client1,
+    client2,
+    client3,
+    client4,
+    client5,
+    client6,
+    client7,
+    client8,
+  ];
+
+  return (
+    <div className="text-center max-h-[10em] relative z-1">
+      <div className="mx-auto">
+        <Swiper
+          modules={[Autoplay]}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          spaceBetween={20}
+          slidesPerView={4}
+          loop={true}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 5 },
+          }}
+        >
+          {clients.map((client, idx) => (
+            <SwiperSlide key={idx}>
+              <img
+                src={client}
+                className="img-fluid mx-auto grayscale h-[8em]"
+                alt={`Client ${idx + 1}`}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
 const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section id="hero" className="hero sticked-header-offset bg-gray-100">
-        <div id="particles-js"></div>
-        <div id="repulse-circle-div"></div>
-        <div className="mx-auto p-6 bg-gradient-to-br from-blue-700 to-blue-900 h-screen items-center justify-center">
+      <div
+        className="w-screen h-screen fixed top-0 left-0 -z-10"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      ></div>
+      <section id="hero" className="hero sticked-header-offset bg-transparent">
+        <div className="mx-auto p-6 h-screen items-center justify-center">
           <div className="flex items-center justify-center h-[35em]">
             <div className="w-[50%]"></div>
-            <div className=" text-white p-8 rounded-lg mt-[10em]">
+            <div className="text-white p-8 rounded-lg mt-[10em]">
               <h2 className="text-6xl font-bold">
                 Delivering Superior Services
                 <br />{" "}
@@ -107,7 +111,7 @@ const Home = () => {
                   <i className="bi bi-instagram"></i>
                 </a>
               </div>
-              <div className="flex  space-x-4 mt-6">
+              <div className="flex space-x-4 mt-6">
                 <a
                   href="#contact"
                   className="px-6 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-600"
@@ -127,7 +131,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-16 bg-gray-50 px-[4em]">
+      <section id="services" className="py-16 bg-transparent px-[4em]">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -168,47 +172,54 @@ const Home = () => {
       </div>
       <WhyUs />
 
-        {/*another element */}
-        <div className="mx-auto flex justify-center items-center gap-[5em] bg-transparent p-[5em]">
-            {[
-                {
-                    icon: happyClient,
-                    number: 232,
-                    hText: 'Happy Clients',
-                    pText : 'Lorem ipsum dolor sit.'
-                },
-                {
-                    icon: hourSupport,
-                    number: 521,
-                    hText:' Completed Projects',
-                    pText : 'Lorem, ipsum dolor.'
-                },
-                {
-                    icon: projectComp,
-                    number: 453,
-                    hText: 'Hours Of Support',
-                    pText : 'Lorem, ipsum dolor.'
-                }
-            ].map((Item,index) => {
-                return(
-                    <div key={index}>
-                        <div className="flex flex-col justify-center items-center gap-[1em]">
-                            <img src={Item.icon} alt="icon" className="h-[5em] hover:scale-[120%] transition-all duration-300" />
-                            <div><Counter end = {Item.number}/></div>
-                            <div className="text-xl text-blue-600 font-bold">{Item.hText}</div>
-                            <div className="text-lg">{Item.pText}</div>
-                        </div>
-                    </div>
-                )
-            })}
-        </div>
-
-        {/*crousel */}
-            <div>
-                <ClientCarousel/>
+      {/* Counter Section */}
+      <div className="mx-auto flex justify-center items-center gap-[5em] bg-transparent p-[5em]">
+        {[
+          {
+            icon: happyClient,
+            number: 232,
+            hText: "Happy Clients",
+            pText: "Lorem ipsum dolor sit.",
+          },
+          {
+            icon: hourSupport,
+            number: 521,
+            hText: "Completed Projects",
+            pText: "Lorem, ipsum dolor.",
+          },
+          {
+            icon: projectComp,
+            number: 453,
+            hText: "Hours Of Support",
+            pText: "Lorem, ipsum dolor.",
+          },
+        ].map((item, index) => (
+          <div key={index}>
+            <div className="flex flex-col justify-center items-center gap-[1em]">
+              <img
+                src={item.icon}
+                alt="icon"
+                className="h-[5em] hover:scale-[120%] transition-all duration-300"
+              />
+              <div>
+                <Counter end={item.number} />
+              </div>
+              <div className="text-xl text-blue-600 font-bold">
+                {item.hText}
+              </div>
+              <div className="text-lg">{item.pText}</div>
             </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Carousel */}
+      <div>
+        <ClientCarousel />
+      </div>
+
       {/* Contact Section */}
-      <section id="contact" className="py-16 bg-white p-[5em]">
+      <section id="contact" className="py-16 bg-transparent p-[5em]">
         <div className="container mx-auto">
           <h2 className="text-5xl font-bold text-center mb-8 text-blue-600">
             Contact Us
@@ -257,7 +268,7 @@ const Home = () => {
                 ></textarea>
                 <button
                   type="submit"
-                  className=" p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                  className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                 >
                   Send Message
                 </button>
