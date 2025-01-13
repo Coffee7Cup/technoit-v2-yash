@@ -10,7 +10,6 @@ import icon6 from '../assets/icon-6.svg';
 import "./Anim.css"
 
 const WhyUs = () => {
-
   useEffect(() => {
     const observer1 = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

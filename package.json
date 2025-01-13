@@ -1,10 +1,13 @@
 {
+  "homepage": "https://Coffee7Cup.github.io/technoit-v2-yash",
   "name": "v3",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

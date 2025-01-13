@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { WhyUs } from "./AboutPage";
 import Counter from "./utils/Counter";
 import service1 from "../assets/service-cloud.svg";
@@ -70,6 +70,12 @@ const ClientCarousel = () => {
 
 const Home = () => {
 
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
+  
+  window.addEventListener("resize", () => { 
+    setScreenSize(window.innerWidth);
+  });
+
   useEffect(() => {
     const observer1 = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -103,14 +109,12 @@ const Home = () => {
       observer2.observe(element);
     });
 
-
-
   }, []);
 
   return (
     <div>
       {/* Hero Section */}
-      <div
+      {screenSize > 768 && <div
         className="w-screen h-screen fixed top-0 left-0 -z-10"
         style={{
           backgroundImage: `url(${bg})`,
@@ -118,7 +122,15 @@ const Home = () => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
+      ></div>}
+
+      { screenSize < 768 && <div
+        className="w-screen h-screen fixed top-0 left-0 -z-10"
+        style={{
+          backgroundColor: "rgb(15, 44, 85)",
+        }}
       ></div>
+      }
 
       <div className="_hidden">
         <section
@@ -215,7 +227,9 @@ const Home = () => {
         <br />
         <span className="text-lg">Lorem ipsum dolor sit amet</span>
       </div>
-      <WhyUs />
+      <div className="flex flex-col justify-center items-center">
+        <WhyUs />
+      </div>
 
       {/* Counter Section */}
       <div className="mx-auto flex justify-center items-center gap-[5em] bg-transparent p-[5em]">
