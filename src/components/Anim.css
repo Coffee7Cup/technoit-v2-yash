@@ -1,0 +1,39 @@
+
+._hidden {
+    filter : blur(6px);
+    opacity: 0;
+    transform: translateX(-30%);
+    transition: all 300ms;
+}
+
+._animateLeftSide{
+    opacity: 1;
+    filter : blur(0);
+    transform: translateX(0);
+}
+
+._hiddenY {
+    filter : blur(6px);
+    opacity: 0;
+    transform: translateY(70%);
+    transition: all 300ms;
+}
+
+._animateUp{
+    opacity: 1;
+    filter : blur(0);
+    transform: translateX(0);
+}
+
+._hiddenR {
+    filter : blur(6px);
+    opacity: 0;
+    transform: translateX(30%);
+    transition: all 300ms;
+}
+
+._animateRightSide{
+    opacity: 1;
+    filter : blur(0);
+    transform: translateX(0);
+}

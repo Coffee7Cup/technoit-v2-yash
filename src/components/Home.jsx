@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { WhyUs } from "./AboutPage";
 import Counter from "./utils/Counter";
 import service1 from "../assets/service-cloud.svg";
@@ -24,6 +24,7 @@ import client6 from "../assets/client-6.png";
 import client7 from "../assets/client-7.png";
 import client8 from "../assets/client-8.png";
 import bg from "../assets/hero-bg.png";
+import "./Anim.css";
 
 const ClientCarousel = () => {
   const clients = [
@@ -68,6 +69,44 @@ const ClientCarousel = () => {
 };
 
 const Home = () => {
+
+  useEffect(() => {
+    const observer1 = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("_animateLeftSide");
+        } else {
+          entry.target.classList.remove("_animateLeftSide");
+        }
+      });
+    });
+
+    const LElements = document.querySelectorAll("._hidden");
+
+    LElements.forEach((element) => {
+      observer1.observe(element);
+    });
+
+    const observer2 = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("_animateUp");
+        } else {
+          entry.target.classList.remove("_animateUp");
+        }
+      });
+    });
+
+    const upElements = document.querySelectorAll("._hiddenY");
+
+    upElements.forEach((element) => {
+      observer2.observe(element);
+    });
+
+
+
+  }, []);
+
   return (
     <div>
       {/* Hero Section */}
@@ -80,55 +119,61 @@ const Home = () => {
           backgroundRepeat: "no-repeat",
         }}
       ></div>
-      <section id="hero" className="hero sticked-header-offset bg-transparent">
-        <div className="mx-auto p-6 h-screen items-center justify-center">
-          <div className="flex items-center justify-center h-[35em]">
-            <div className="w-[50%]"></div>
-            <div className="text-white p-8 rounded-lg mt-[10em]">
-              <h2 className="text-6xl font-bold">
-                Delivering Superior Services
-                <br />{" "}
-                <span className="text-7xl font-bold text-blue-600">
-                  IT Solutions
-                </span>
-                <span className="text-blue-500">.</span>
-              </h2>
-              <p className="mt-4">
-                You can easily change any design to your own. It is also highly
-                customizable and SEO-friendly.
-              </p>
-              <div className="social mt-6 flex space-x-4">
-                <a href="#" className="text-xl">
-                  <i className="bi bi-twitter"></i>
-                </a>
-                <a href="#" className="text-xl">
-                  <i className="bi bi-facebook"></i>
-                </a>
-                <a href="#" className="text-xl">
-                  <i className="bi bi-linkedin"></i>
-                </a>
-                <a href="#" className="text-xl">
-                  <i className="bi bi-instagram"></i>
-                </a>
-              </div>
-              <div className="flex space-x-4 mt-6">
-                <a
-                  href="#contact"
-                  className="px-6 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-600"
-                >
-                  Get Quotes
-                </a>
-                <a
-                  href="#services"
-                  className="px-6 py-2 bg-blue-500 text-white rounded-2xl hover:bg-clue-600"
-                >
-                  Get Started
-                </a>
+
+      <div className="_hidden">
+        <section
+          id="hero"
+          className="hero sticked-header-offset bg-transparent"
+        >
+          <div className="mx-auto p-6 h-screen items-center justify-center">
+            <div className="flex items-center justify-center h-[35em]">
+              <div className="w-[50%]"></div>
+              <div className="text-white p-8 rounded-lg mt-[10em]">
+                <h2 className="text-6xl font-bold">
+                  Delivering Superior Services
+                  <br />{" "}
+                  <span className="text-7xl font-bold text-blue-600">
+                    IT Solutions
+                  </span>
+                  <span className="text-blue-500">.</span>
+                </h2>
+                <p className="mt-4">
+                  You can easily change any design to your own. It is also
+                  highly customizable and SEO-friendly.
+                </p>
+                <div className="social mt-6 flex space-x-4">
+                  <a href="#" className="text-xl">
+                    <i className="bi bi-twitter"></i>
+                  </a>
+                  <a href="#" className="text-xl">
+                    <i className="bi bi-facebook"></i>
+                  </a>
+                  <a href="#" className="text-xl">
+                    <i className="bi bi-linkedin"></i>
+                  </a>
+                  <a href="#" className="text-xl">
+                    <i className="bi bi-instagram"></i>
+                  </a>
+                </div>
+                <div className="flex space-x-4 mt-6">
+                  <a
+                    href="#contact"
+                    className="px-6 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-600 transition-all duration-300"
+                  >
+                    Get Quotes
+                  </a>
+                  <a
+                    href="#services"
+                    className="px-6 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-600 transition-all duration-300"
+                  >
+                    Get Started
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Services Section */}
       <section id="services" className="py-16 bg-transparent px-[4em]">
@@ -144,7 +189,7 @@ const Home = () => {
             ].map((service, idx) => (
               <div
                 key={idx}
-                className="p-6 bg-white shadow-md rounded-lg text-center hover:scale-110 transition-all duration-300"
+                className="p-6 bg-white shadow-md rounded-lg text-center hover:scale-110 transition-all duration-300 _hiddenY"
               >
                 <div className="icon mb-4">
                   <img
@@ -195,7 +240,7 @@ const Home = () => {
           },
         ].map((item, index) => (
           <div key={index}>
-            <div className="flex flex-col justify-center items-center gap-[1em]">
+            <div className="flex flex-col justify-center items-center gap-[1em] bg-white/60 dropdown-blur-lg p-10 rounded-xl ">
               <img
                 src={item.icon}
                 alt="icon"

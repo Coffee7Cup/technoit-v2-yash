@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import features from '../assets/features.jpg';
 import icon1 from '../assets/icon-1.svg';
 import icon2 from '../assets/icon-2.svg';
@@ -7,8 +7,45 @@ import icon4 from '../assets/icon-4.svg';
 // import icon5 from '../assets/icon-5-crdownload.svg';
 import icon5 from '../assets/icon-4.svg';
 import icon6 from '../assets/icon-6.svg';
+import "./Anim.css"
 
 const WhyUs = () => {
+
+  useEffect(() => {
+    const observer1 = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("_animateLeftSide");
+        } else {
+          entry.target.classList.remove("_animateLeftSide");
+        }
+      });
+    });
+
+    const LElements = document.querySelectorAll("._hidden");
+
+    LElements.forEach((element) => {
+      observer1.observe(element);
+    });
+
+    const observer3 = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("_animateRightSide");
+        } else {
+          entry.target.classList.remove("_animateRightSide");
+        }
+      });
+    });
+
+    const RElements = document.querySelectorAll("._hiddenR");
+
+    RElements.forEach((element) => {
+      observer3.observe(element);
+    });
+
+  }, []);
+
   return(
     <main id="main" className="single-page">
         <section>
@@ -23,7 +60,7 @@ const WhyUs = () => {
                 ].map(({ title, icon }) => (
                   <div
                     key={title}
-                    className="list-wrap flex items-center gap-4 bg-white shadow-md p-4 rounded"
+                    className="list-wrap flex items-center gap-4 bg-white shadow-md p-4 rounded _hidden"
                   >
                     <div className="description">
                       <h4 className="text-2xl font-bold">{title}</h4>
@@ -62,7 +99,7 @@ const WhyUs = () => {
                 ].map(({ title, icon }) => (
                   <div
                     key={title}
-                    className="list-wrap flex items-center gap-4 bg-white shadow-md p-4 rounded"
+                    className="list-wrap flex items-center gap-4 bg-white shadow-md p-4 rounded _hiddenR"
                   >
                     <div className="icon">
                       <img
